@@ -1,0 +1,260 @@
+<%- include("partials/header") %>
+<div class="user-main-area">
+  <div class="wrapper">
+    <div class="sidebar toggle" id="sidebar">
+      <nav class="sidebar-nav">
+        <ul class="sidebar-list justify-content-center">
+          <li class="sidebar-item">
+            <a href="/users/<%= userId %>/img-post/all" class="sidebar-link">
+              <img src="/img/image.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">Images posts</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/users/<%= userId %>/text-post/all" class="sidebar-link">
+              <img src="/img/text.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">Text posts</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a
+              href="/users/<%= userId %>/youtube-post/all"
+              class="sidebar-link"
+            >
+              <img src="/img/vedio.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">Vedio posts</pre>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <main>
+      <div class="user-feed-section">
+        <% if(pidSent=="all"){ %>
+        <input class="input" type="hidden" name="all" />
+        <div class="container">
+          <% if(categorySent=="img-post"){%>
+          <h1 class="big-header page-heading">
+            Image Posts
+          </h1>
+          <div class="row">
+            <% postsArray.forEach((post)=>{ %>
+            <div class="col-md-4">
+              <div class="card text-left user-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-sm-2 p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10  col-sm-10">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption">
+                    <%= post.caption.slice(0,16) %>...<a
+                      href="/users/<%= userId %>/img-post/<%= post._id %>"
+                      >more</a
+                    >
+                  </p>
+                  <p></p>
+                  <div class="user-feed-img">
+                    <img
+                      class="card-img-top"
+                      src="data:image/<%=post.img.contentType%>;base64,<%=post.img.data.toString('base64')%>"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+          <% } else if (categorySent=="text-post"){%>
+          <h1 class="big-header page-heading">
+            Text Posts
+          </h1>
+          <div class="row">
+            <% postsArray.forEach((post)=>{ %>
+            <div class="col-md-4">
+              <div class="card text-left user-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2  p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10 ">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption">
+                    <%= post.caption.slice(0,60) %>...<a
+                      href="/users/<%= userId %>/text-post/<%= post._id %>"
+                      >more</a
+                    >
+                  </p>
+                  <p></p>
+                  <div class="user-feed-img"></div>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+
+          <% } else if (categorySent=="youtube-post"){ %>
+          <h1 class="big-header page-heading">
+            Vedio Posts
+          </h1>
+          <div class="row">
+            <% postsArray.forEach((post)=>{ %>
+            <div class="col-md-4">
+              <div class="card text-left user-card">
+                <div class="card-header"></div>
+                <div class="card-body row">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2  p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10 ">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption">
+                    <%= post.caption.slice(0, 32) %>...<a
+                      href="/users/<%= userId %>/youtube-post/<%= post._id %>"
+                      >more</a
+                    >
+                  </p>
+                  <p></p>
+                  <div class="user-feed-img">
+                    <iframe
+                      class="card-img-top"
+                      height="200px"
+                      src="https://www.youtube.com/embed/<%= post.link %> "
+                      frameborder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+          <% }%>
+        </div>
+        <% }else{ %>
+        <div class="container">
+          <input class="input" type="hidden" name="fullread" />
+          <div class="row">
+            <div class="col-md-7 middle-col">
+              <% if(categorySent == "img-post"){ %>
+              <div class="card text-left fullread-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2  p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10 ">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption"><%= post.caption%></p>
+                  <p></p>
+                  <div class="user-feed-img">
+                    <img
+                      class="card-img-top"
+                      src="data:image/<%=post.img.contentType%>;base64,<%=post.img.data.toString('base64')%>"
+                    />
+                  </div>
+                </div>
+              </div>
+              <% }else if(categorySent=="text-post"){ %>
+              <div class="card text-left fullread-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2  p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10 ">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption"><%= post.caption%></p>
+                  <p></p>
+                  <div class="user-feed-img"></div>
+                </div>
+              </div>
+              <% }else if(categorySent=="youtube-post"){ %>
+              <div class="card text-left fullread-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2  p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10 ">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption"><%= post.caption%></p>
+                  <p></p>
+                  <div class="user-feed-img">
+                    <iframe
+                      class="card-img-top"
+                      height="360px"
+                      src="https://www.youtube.com/embed/<%= post.link %> "
+                      frameborder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  hideShow();
+</script>
+<%- include("partials/footer") %>

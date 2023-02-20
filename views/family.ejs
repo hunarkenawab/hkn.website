@@ -1,0 +1,694 @@
+<%- include("partials/header") %>
+<div id="loader"></div>
+<div class="container my-5">
+  
+ <% if(pidSent=="all"){ %>
+         <h2 class="text-center m-4  mb-5 big-header">CORE TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%> <%if(member.propic.data!=undefined &&
+    member.isCoreMember==true){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            <%= member.team %> <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if( member.isCoreMember==true){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">OUTREACH TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Outreach"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Outreach <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Outreach"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">CONTENT TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Content"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Content <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Content"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">COMMUNICATION TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Communication"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Communication <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Communication"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">SOCIAL MEDIA TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Social"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Social Media <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Social"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">SPONSORSHIP TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Sponsorship"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Sponsorship <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Sponsorship"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">MANAGEMENT TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Management"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Management <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Management"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">PHOTOGRAPHY TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Photography"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Photography <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Photography"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">TREASURE TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Treasure"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Treasure Team <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Treasure"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">OPEN MIC - LITERAL</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Openmic-l"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Open Mic Literal <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Openmic-l"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">OPEN MIC - CULTURAL TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Openmic-c"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Open Mic Cultural <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if (member.team=="Openmic-c"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">TECHNICAL TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Technical"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Technical <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Technical"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">DESIGN TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Design"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Design <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Design"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">DATABASE</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Database"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Database <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Database"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">DISCIPLINE & HR</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Discipline"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Discipline and HR <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Discipline"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+  <h2 class="text-center m-4 mb-5 big-header">ADVISORY TEAM</h2>
+
+  <div class="row justify-content-center">
+    <% memberArray.forEach((member)=>{%>
+    <%if(member.propic.data!=undefined&&member.team=="Advisory"){%>
+
+    <div class="col-md-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+          alt="core-member-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-member-title card-title"><%= member.name %></h4>
+          <p class="core-member-designation">
+            Advisory <%= member.designation %>
+          </p>
+          <p class="core-description card-text">
+            <%=member.caption.toString().slice(0,130)%>...<a href="/family/<%=member._id%>/fullread">more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% }else if(member.team=="Advisory"){%>
+    <div class="col-md-4 text-center">
+      <img
+        class="core-team-img"
+        src="/img/logo.png"
+        alt="core-member-pic"
+        width="100px"
+      />
+      <h4 class="core-member-title"><%= member.name %></h4>
+      <p class="core-member-designation"><%= member.designation %></p>
+      <p class="core-description"><%= member.caption %></p>
+    </div>
+    <% } %> <%}); %>
+  </div>
+
+
+  
+<% }else{ %>
+        <div class="container">
+          <input class="input" type="hidden" name="fullread" />
+          <div class="row">
+            <div class="col-sm-7 middle-col">
+              <div class="card text-left fullread-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2  p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=member.propic.contentType%>;base64,<%=member.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10 ">
+                      <h4 class="card-title user"><%= member.name %></h4>
+                      <h6 class="card-text date-time"><%= member.designation %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption"><%= member.caption%></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%}%>
+</div>
+
+<%-include("partials/footer")%>

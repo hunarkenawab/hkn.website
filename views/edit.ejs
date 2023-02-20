@@ -1,0 +1,272 @@
+<%- include("partials/header") %>
+
+<div class="compose-container card" id="home-body">
+  <div class="card-header member-card-header"></div>
+  <ul class="nav nav-tabs m-auto member-signup" id="myTab" role="tablist">
+    <%if( categorySent == "img-post"){ %>
+    <li class="nav-item pill-item" role="presentation">
+      <a
+        class="nav-link active pill-link"
+        id="img-tab"
+        data-toggle="tab"
+        href="#img"
+        role="tab"
+        aria-controls="img"
+        aria-selected="true"
+        >Image Post</a
+      >
+    </li>
+    <% }else if( categorySent == "text-post" ){ %>
+    <li class="nav-item pill-item" role="presentation">
+      <a
+        class="nav-link active pill-link"
+        id="Text-tab"
+        data-toggle="tab"
+        href="#Text"
+        role="tab"
+        aria-controls="Text"
+        aria-selected="false"
+        >Text Post</a
+      >
+    </li>
+    <% }else if ( categorySent == "youtube-post"){ %>
+    <li class="nav-item pill-item" role="presentation">
+      <a
+        class="nav-link active pill-link"
+        id="youtube-tab"
+        data-toggle="tab"
+        href="#youtube"
+        role="tab"
+        aria-controls="youtube"
+        aria-selected="false"
+        >Youtube Post</a
+      >
+    </li>
+    <%}else{%> <%console.log("invalid category");%> <%}%>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <%if( categorySent == "img-post"){ %>
+    <div
+      class="tab-pane fade show active"
+      id="img"
+      role="tabpanel"
+      aria-labelledby="img-tab"
+    >
+      <div class="card compose-card">
+        <div class="card-body compose-card-body">
+          <h2 class="form-h2 card-title compose-card-title">
+            Edit Post <img src="/img/logo.png" class="form-logo" />
+          </h2>
+          <form
+            class="compose-form"
+            action="/compose/edit/<%= userId %>/<%= categorySent %>/<%= pidSent %>"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <input
+                type="text"
+                name="caption"
+                class="form-control"
+                placeholder="Caption"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                name="postOwner"
+                class="form-control"
+                placeholder="Post owner name"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div class="form-group">
+              <label for="propic">Select Profile pic : </label>
+              <input
+                class="d-inline"
+                type="file"
+                name="propic"
+                class="form-control"
+                placeholder="choose propic"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div class="form-group">
+              <label for="image">Select image pic : </label>
+              <input
+                class="d-inline"
+                type="file"
+                name="image"
+                class="form-control"
+                placeholder="choose file"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="landscape"
+                id="inlineRadio1"
+              />
+              <label class="form-check-label" for="inlineRadio1"
+                >Landscape</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="portrait"
+                id="inlineRadio2"
+              />
+              <label class="form-check-label" for="inlineRadio2"
+                >Portrait</label
+              >
+            </div>
+            <div class="form-group signup-form-group">
+              <input
+              type="submit"
+              class="btn btn-warning btn-md signup-btn d-block"
+              value="Submit"
+            />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }else if( categorySent == "text-post" ){ %>
+    <div
+      class="tab-pane fade show active"
+      id="Text"
+      role="tabpanel"
+      aria-labelledby="Text-tab"
+    >
+      <div class="card compose-card">
+        <div class="card-body compose-card-body">
+          <h2 class="form-h2 card-title compose-card-title">
+            Edit Post<img src="/img/logo.png" class="form-logo" />
+          </h2>
+          <form
+            class="compose-form"
+            action="/compose/edit/<%= userId %>/<%= categorySent %>/<%= pidSent %>"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <input
+                type="text"
+                name="caption"
+                class="form-control"
+                placeholder="Caption"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                name="postOwner"
+                class="form-control"
+                placeholder="Post owner name"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div class="form-group">
+              <label for="propic">Select Profile pic : </label>
+              <input
+                class="d-inline"
+                type="file"
+                name="propic"
+                class="form-control"
+                placeholder="choose propic"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div class="form-group signup-form-group">
+              <input
+              type="submit"
+              class="btn btn-warning btn-md signup-btn d-block"
+              value="Submit"
+            />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }else if ( categorySent == "youtube-post"){ %>
+    <div
+      class="tab-pane fade show active"
+      id="youtube"
+      role="tabpanel"
+      aria-labelledby="youtube-tab"
+    >
+      <div class="card compose-card">
+        <div class="card-body compose-card-body">
+          <h2 class="form-h2 card-title compose-card-title">
+            Edit Post<img src="/img/logo.png" class="form-logo" />
+          </h2>
+          <form
+            class="compose-form"
+            action="/compose/edit/<%= userId %>/<%= categorySent %>/<%= pidSent %>"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <input
+                type="text"
+                name="caption"
+                class="form-control"
+                placeholder="Caption"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                name="postOwner"
+                class="form-control"
+                placeholder="Post owner name"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div class="form-group">
+              <label for="propic">Select Profile pic : </label>
+              <input class="class="d-inline"" type="file" name="propic"
+              class="form-control" placeholder="choose propic"
+              aria-describedby="helpId">
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                name="youtubeLink"
+                class="form-control"
+                placeholder="paste link here"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div class="form-group signup-form-group">
+              <input
+              type="submit"
+              class="btn btn-warning btn-md signup-btn d-block"
+              value="Submit"
+            />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <%}else{%> <%console.log("invalid category");%> <%}%>
+  </div>
+</div>
+
+<!-- 
+<div class="card-group compose-card-group">
+  
+  
+    
+</div> -->
+
+<%- include("partials/footer") %>
+
+<!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat error quibusdam accusantium quae eos, odio porro suscipit nisi magni laboriosam dignissimos veritatis corporis facilis recusandae! Aspernatur perspiciatis aliquid totam nulla. -->

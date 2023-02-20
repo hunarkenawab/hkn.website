@@ -1,0 +1,71 @@
+<%- include("partials/header") %>
+
+<div class="user-main-area">
+  <div class="container">
+    <h2 class="big-header mt-5 text-center">Our Upcoming Events</h2>
+    <div class="row justify-content-center">
+      <% eventArrayUpcoming.forEach((event)=>{%>
+
+      <div class="col-lg-7 mt-5 mb-1">
+        <div class="card-header"></div>
+        <div class="card text-left event-card">
+          <div class="card-body">
+            <h4 class="card-title event-title">
+              <%= event.title %><img
+                class="form-event-logo"
+                src="/img/logo.png"
+                alt=""
+              />
+            </h4>
+            <h6 class="text-muted event-duartion"><%= event.duration %></h6>
+            <div class="card-text mt-4 event-description">
+              <%= event.description %>
+              <pre
+                class="m-0"
+              >Go to this link : <a href="<%= event.link %>"><%= event.linkDescription %></a></pre>
+            </div>
+          </div>
+          <img
+            class="card-img-top img-fluid my-4 mt-0"
+            src="data:image/<%=event.eventPic.contentType%>;base64,<%=event.eventPic.data.toString('base64')%>"
+            alt="event-banner"
+          />
+        </div>
+      </div>
+
+      <% }) %>
+    </div>
+    <h2 class="big-header mt-5 text-center">Our Past Events</h2>
+    <div class="row justify-content-center">
+      <% eventArrayPast.forEach((event)=>{%>
+      <div class="col-lg-7 mt-5 mb-1">
+        <div class="card-header"></div>
+        <div class="card text-left event-card">
+          <div class="card-body">
+            <h4 class="card-title">
+              <%= event.title %><img
+                class="form-logo"
+                src="/img/logo.png"
+                alt=""
+              />
+            </h4>
+            <h6 class="text-muted"><%= event.duration %></h6>
+            <div class="card-text mt-4 event-description">
+              <%= event.description %>
+              <pre
+                class="m-0"
+              >Go to this link : <a href="<%= event.link %>"><%= event.linkDescription %></a></pre>
+            </div>
+          </div>
+          <img
+            class="card-img-top img-fluid my-4 mt-0"
+            src="data:image/<%=event.eventPic.contentType%>;base64,<%=event.eventPic.data.toString('base64')%>"
+            alt="event-banner"
+          />
+        </div>
+      </div>
+      <%}) %>
+    </div>
+  </div>
+</div>
+<%- include("partials/footer") %>

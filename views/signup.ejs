@@ -1,0 +1,87 @@
+<%- include("partials/header") %>
+
+
+<div class="container min-ht-container">
+  <div class="row mt-5 justify-content-center p-4">
+    <div class="col-md-6 col-sm-12 p-0">
+      <div class="card b-0 form-card-shadow animate ">
+        <div class="card-header  member-card-header"></div>
+    <div class="card member-signup ">
+      
+        <div class="card-body px-5">
+          <form action="/member-signup" class="form-style" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <h2 class="form-h2">Sign Up <img src="/img/logo.png" class="form-logo" /></h2>
+
+          <input
+            type="email"
+            class="form-control signup-form-control"
+            name="username"
+            placeholder="Email Address"
+            required="required"
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control signup-form-control"
+            name="name"
+            placeholder="Name"
+            required="required"
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control signup-form-control"
+            name="pnumber"
+            placeholder="Phone No"
+            required="required"
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control signup-form-control"
+            name="code"
+            placeholder="Enter the code"
+            required="required"
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control signup-form-control"
+            name="password"
+            placeholder="Password"
+            required="required"
+          />
+        </div>
+        <div class="form-group signup-form-group">
+          <button type="submit" class="btn btn-warning btn-lg signup-btn">
+            Sign Up
+          </button>
+        </div>
+      </form>
+      
+        </div>
+      
+    </div>
+    
+      </div>
+      <div class="text-center login-text">
+        Already have an account? <a href="/login">Login here</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<%- include("partials/footer") %>

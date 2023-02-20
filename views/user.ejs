@@ -1,0 +1,724 @@
+<%- include("partials/header") %>
+<div id="loader"></div>
+<div class="user-main-area">
+  <div class="wrapper">
+    <div class="sidebar toggle" id="sidebar">
+      <nav class="sidebar-nav">
+        <ul class="sidebar-list">
+          <li class="sidebar-item">
+            <a href="/compose/<%= userId %>" class="sidebar-link">
+              <img src="/img/compose.svg" class="sidebar-svg" />
+              <pre class="link-text">Compose</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/users/<%= userId %>/img-post/all" class="sidebar-link">
+              <img src="/img/image.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">Images posts</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/users/<%= userId %>/text-post/all" class="sidebar-link">
+              <img src="/img/text.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">Text posts</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a
+              href="/users/<%= userId %>/youtube-post/all"
+              class="sidebar-link"
+            >
+              <img src="/img/vedio.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">Vedio posts</pre>
+            </a>
+          </li>
+          <li class="sidebar-item hidden">
+            <a
+              href="/edit/<%= userId %>/<%= categorySent %>/<%= pidSent %>"
+              class="sidebar-link"
+            >
+              <img src="/img/edit.svg" class="sidebar-svg" alt="" />
+
+              <pre class="link-text">Edit post</pre>
+            </a>
+          </li>
+          <li class="sidebar-item hidden">
+            <a
+              href="/delete/<%= userId %>/<%= categorySent %>/<%= pidSent %>"
+              class="sidebar-link"
+            >
+              <img src="/img/delete.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">Delete post</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/users/<%= userId %>/none/event-add" class="sidebar-link">
+              <img src="/img/event.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">Add Event</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/contactus" class="sidebar-link">
+              <img src="/img/details.svg" class="sidebar-svg" alt="" />
+
+              <pre class="link-text">Your Details</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/users/<%= userId %>/none/notice-add" class="sidebar-link">
+              <img src="/img/addmember.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">New Notice</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/users/<%= userId %>/none/influencer-add" class="sidebar-link">
+              <img src="/img/addmember.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">New Influencer</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/users/<%= userId %>/none/member-add" class="sidebar-link">
+              <img src="/img/addmember.svg" class="sidebar-svg" alt="" />
+              <pre class="link-text">Add member</pre>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="/logout" class="sidebar-link">
+              <img src="/img/logout.svg" class="sidebar-svg" alt="" srcset="" />
+              <pre class="link-text">Log Out</pre>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <main>
+      <input
+        class="disable-footer"
+        type="hidden"
+        name="user-page-disable-footer"
+      />
+      <div class="user-feed-section">
+        <% if(pidSent=="all"){ %>
+        <input class="input" type="hidden" name="all" />
+        <div class="container">
+          <% if(categorySent=="img-post"){%>
+          <h1 class="big-header page-heading">Image Posts</h1>
+          <div class="row">
+            <% postsArray.forEach((post)=>{ %>
+            <div class="col-md-4">
+              <div class="card text-left user-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-sm-2 p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption">
+                    <%= post.caption.slice(0,16) %>...<a
+                      href="/users/<%= userId %>/img-post/<%= post._id %>"
+                      >more</a
+                    >
+                  </p>
+                  <p></p>
+                  <div class="user-feed-img">
+                    <img
+                      class="card-img-top"
+                      src="data:image/<%=post.img.contentType%>;base64,<%=post.img.data.toString('base64')%>"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+          <% } else if (categorySent=="text-post"){%>
+          <h1 class="big-header page-heading">Text Posts</h1>
+          <div class="row">
+            <% postsArray.forEach((post)=>{ %>
+            <div class="col-md-4">
+              <div class="card text-left user-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2 p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption">
+                    <%= post.caption.slice(0,60) %>...<a
+                      href="/users/<%= userId %>/text-post/<%= post._id %>"
+                      >more</a
+                    >
+                  </p>
+                  <p></p>
+                  <div class="user-feed-img"></div>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+
+          <% } else if (categorySent=="youtube-post"){ %>
+          <h1 class="big-header page-heading">Video Posts</h1>
+          <div class="row">
+            <% postsArray.forEach((post)=>{ %>
+            <div class="col-md-4">
+              <div class="card text-left user-card">
+                <div class="card-header"></div>
+                <div class="card-body row">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2 p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption">
+                    <%= post.caption.slice(0, 32) %>...<a
+                      href="/users/<%= userId %>/youtube-post/<%= post._id %>"
+                      >more</a
+                    >
+                  </p>
+                  <p></p>
+                  <div class="user-feed-img">
+                    <iframe
+                      class="card-img-top"
+                      height="200px"
+                      src="https://www.youtube.com/embed/<%= post.link %> "
+                      frameborder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+          <% }%>
+        </div>
+        <% }else if(pidSent=="member-add"){ %>
+        <input class="input" type="hidden" name="all" />
+        <div class="container min-ht-container">
+          <div class="row mt-5 justify-content-center">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+              <!-- <div class="member-signup"> -->
+              <div class="card-header member-card-header"></div>
+              <div class="card mb-3">
+                <div class="card-body p-5 shadow">
+                  <form
+                    action="/member-add/<%= userId %> "
+                    method="post"
+                    enctype="multipart/form-data"
+                  >
+                    <h2 class="form-h2">
+                      Add Member <img src="/img/logo.png" class="form-logo" />
+                    </h2>
+
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="name"
+                        placeholder="Name"
+                        required="required"
+                      />
+                    </div>
+
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="caption"
+                        placeholder="Description"
+                        required="required"
+                      />
+                    </div>
+                    <div class="form-group signup-form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="regular"
+                          id="inlineRadio1"
+                        />
+                        <label class="form-check-label" for="inlineRadio1"
+                          >Regular</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="admin"
+                          id="inlineRadio2"
+                        />
+                        <label class="form-check-label" for="inlineRadio2"
+                          >Web Admin</label
+                        >
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="isCoreMember"
+                          id="inlineRadio3"
+                          onclick="formInputToggle()"
+                        />
+                        <label class="form-check-label" for="inlineRadio3"
+                          >Core</label
+                        >
+                      </div>
+                      <div class="form-check" id="hideit">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="head"
+                        />
+                        <label class="form-check-label" for="inlineRadio4"
+                          >Head</label
+                        >
+                      </div>
+                      <div class="form-check" id="hideit">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="cohead"
+                        />
+                        <label class="form-check-label" for="inlineRadio5"
+                          >Co-Head</label
+                        >
+                      </div>
+                      <div class="form-check" id="hideit">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="regularMember"
+                        />
+                        <label class="form-check-label" for="inlineRadio6"
+                          >Regular Member</label
+                        >
+                      </div>
+                    </div>
+                    <div class="form-group signup-form-group hide" id="showit">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="designation"
+                        placeholder="Designation"
+                      />
+                    </div>
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="team"
+                        id="hideit"
+                        placeholder="Team"
+                      />
+                    </div>
+                    <div class="form-group singup-form-group">
+                      <label for="propic">Select Profile pic : </label>
+                      <input
+                        class="d-inline"
+                        type="file"
+                        name="propic"
+                        class="form-control"
+                        placeholder="choose propic"
+                        aria-describedby="helpId"
+                      />
+                    </div>
+
+                    <div class="form-group signup-form-group">
+                      <button
+                        type="submit"
+                        class="btn btn-warning btn-sm signup-btn"
+                      >
+                        Add Member
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="text-center login-text">
+                Designation is NOT mandatory
+                <p class="text-muted">
+                  Code of last Web Admin member added:<br /><%= memberAddedCode
+                  %>
+                </p>
+              </div>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+        <%}else if(pidSent=="notice-add"){%>
+        <input class="input" type="hidden" name="all" />
+        <div class="container min-ht-container">
+          <!-- <div class="member-signup"> -->
+          <div class="row mt-5 justify-content-center">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+              <div class="card mb-3">
+                <div class="card-header member-card-header"></div>
+                <div class="card-body p-5 shadow">
+                  
+                  <form
+                    action="/notice-add/<%= userId %>"
+                    method="post"
+                    enctype="multipart/form-data"
+                  >
+                    <h2 class="form-h2">
+                      Add Notice <img src="/img/logo.png" class="form-logo" />
+                    </h2>
+                    <div class="form-group signup-form-group">
+                    
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="subject"
+                        placeholder="Subject of the Notice"
+                      />
+                    </div>
+                    <div class="form-group signup-form-group">
+                      <textarea
+                        type="text"
+                        name="notice"
+                        class="form-control"
+                        placeholder="Type the notice here"
+                        aria-describedby="helpId"
+                        rows="8"
+                      ></textarea>
+                    </div>
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="noticeLink"
+                        placeholder="Any related link"
+                      />
+                    </div>
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="noticeLinkDescription"
+                        placeholder="What is the link for?"
+                      />
+                    </div>
+                    <div class="form-group signup-form-group">
+                      <button
+                        type="submit"
+                        class="btn btn-warning btn-sm signup-btn"
+                      >
+                        Add Notice
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="text-center login-text">
+                <p class="text-muted">Notice heading will be given by the system. Type only the notice with left alignment. Notice will be added to the Notice page</p>
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+        <%}else if(pidSent=="influencer-add"){%>
+         <input class="input" type="hidden" name="all" />
+        <div class="container min-ht-container">
+          <!-- <div class="member-signup"> -->
+          <div class="row mt-5 justify-content-center">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+              <div class="card mb-3">
+                <div class="card-header member-card-header"></div>
+                <div class="card-body p-5 shadow">
+                  <form
+                    action="/influencer-add/<%= userId %>"
+                    method="post"
+                    enctype="multipart/form-data"
+                  >
+                    <h2 class="form-h2">
+                      Add Influencer <img src="/img/logo.png" class="form-logo" />
+                    </h2>
+
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="influencerName"
+                        placeholder="Enter Name"
+                        required="required"
+                      />
+                    </div>
+
+                    <div class="form-group singup-form-group">
+                      <label for="influencerPropic">Select Pro Pic : </label>
+                      <input
+                        class="d-inline"
+                        type="file"
+                        name="influencerPropic"
+                        class="form-control"
+                        placeholder="choose propic"
+                        aria-describedby="helpId"
+                      />
+                    </div>
+
+                    <div class="form-group signup-form-group">
+                      <button
+                        type="submit"
+                        class="btn btn-warning btn-sm signup-btn"
+                      >
+                        Add Influencer
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="text-center login-text">
+                <p class="text-muted">Influencer will be added to the Influencers page</p>
+              </div>
+            </div>
+      </div>
+          <!-- </div> -->
+        </div>   
+        <%}else if(pidSent=="event-add"){ %>
+        <input class="input" type="hidden" name="all" />
+        <div class="container min-ht-container">
+          <!-- <div class="member-signup"> -->
+          <div class="row mt-5 justify-content-center">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+              <div class="card mb-3">
+                <div class="card-header member-card-header"></div>
+                <div class="card-body p-5 shadow">
+                  <form
+                    action="/event-add/<%= userId %>"
+                    method="post"
+                    enctype="multipart/form-data"
+                  >
+                    <h2 class="form-h2">
+                      Add Event <img src="/img/logo.png" class="form-logo" />
+                    </h2>
+
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="eventTitle"
+                        placeholder="Event Title"
+                        required="required"
+                      />
+                    </div>
+
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="duration"
+                        placeholder="Event Duration"
+                      />
+                    </div>
+
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="description"
+                        placeholder="Description"
+                        required="required"
+                      />
+                    </div>
+                    <div class="form-group signup-form-group">
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="pastEvent"
+                          id="inlineRadio1"
+                        />
+                        <label class="form-check-label" for="inlineRadio1"
+                          >Past Event</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="upcomingEvent"
+                          id="inlineRadio2"
+                        />
+                        <label class="form-check-label" for="inlineRadio2"
+                          >Upcoming Event</label
+                        >
+                      </div>
+                    </div>
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="link"
+                        placeholder="Any related link"
+                        required="required"
+                      />
+                    </div>
+                    <div class="form-group signup-form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="linkDescription"
+                        placeholder="What is the link for?"
+                        required="required"
+                      />
+                    </div>
+                    <div class="form-group singup-form-group">
+                      <label for="propic">Select Event Pic : </label>
+                      <input
+                        class="d-inline"
+                        type="file"
+                        name="eventPic"
+                        class="form-control"
+                        placeholder="choose propic"
+                        aria-describedby="helpId"
+                      />
+                    </div>
+
+                    <div class="form-group signup-form-group">
+                      <button
+                        type="submit"
+                        class="btn btn-warning btn-sm signup-btn"
+                      >
+                        Add Event
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="text-center login-text">
+                <p class="text-muted">Event will be added to the events page</p>
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+
+        <% }else{ %>
+        <div class="container">
+          <input class="input" type="hidden" name="fullread" />
+          <div class="row">
+            <div class="col-md-7 middle-col">
+              <% if(categorySent == "img-post"){ %>
+              <div class="card text-left fullread-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2 p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption"><%= post.caption%></p>
+                  <p></p>
+                  <div class="user-feed-img">
+                    <img
+                      class="card-img-top"
+                      src="data:image/<%=post.img.contentType%>;base64,<%=post.img.data.toString('base64')%>"
+                    />
+                  </div>
+                </div>
+              </div>
+              <% }else if(categorySent=="text-post"){ %>
+              <div class="card text-left fullread-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2 p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption"><%= post.caption%></p>
+                  <p></p>
+                  <div class="user-feed-img"></div>
+                </div>
+              </div>
+              <% }else if(categorySent=="youtube-post"){ %>
+              <div class="card text-left fullread-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <div class="row user-row">
+                    <div class="col-md-2 col-sm-2 p-0">
+                      <img
+                        class="user-card-propic"
+                        src="data:image/<%=post.propic.contentType%>;base64,<%=post.propic.data.toString('base64')%>"
+                        alt="profile-pic"
+                      />
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                      <h4 class="card-title user"><%= post.userName %></h4>
+                      <h6 class="card-text date-time"><%= post.timeStamp %></h6>
+                    </div>
+                  </div>
+                  <p class="user-feed-caption"><%= post.caption%></p>
+                  <p></p>
+                  <div class="user-feed-img">
+                    <iframe
+                      class="card-img-top"
+                      height="360px"
+                      src="https://www.youtube.com/embed/<%= post.link %> "
+                      frameborder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  hideShow();
+</script>
+<%- include("partials/footer") %>

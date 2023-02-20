@@ -1,0 +1,33 @@
+<%- include("partials/header") %> 
+<div class="container min-ht-container text-center">
+  <div id="err-background"></div>
+<div class="err-top">
+<h1 class="err">404</h1>
+<h3 class="err">page not found</h3>
+</div>
+<div class="err-container">
+<div class="ghost-copy">
+<div class="one"></div>
+<div class="two"></div>
+<div class="three"></div>
+<div class="four"></div>
+</div>
+<div class="ghost">
+<div class="face">
+<div class="eye"></div>
+<div class="eye-right"></div>
+<div class="mouth"></div>
+</div>
+</div>
+<div class="err-shadow"></div>
+</div>
+<div class="err-bottom">
+<p class="err"><%= message %></p>
+</form>
+<div class="buttons">
+<a class="btn err-btn btn-sm" href="/<%= pageRef %>" role="button"><%= page %> Again</a>
+</div>
+</div>
+</div>
+<%- include("partials/footer") %> 
+

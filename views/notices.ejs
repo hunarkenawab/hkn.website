@@ -1,0 +1,33 @@
+<%- include("partials/header") %>
+
+<div class="user-main-area">
+  <div class="container">
+    <h2 class="big-header mt-5 mb-5 text-center">NOTICES</h2>
+    <% noticesArray.forEach((notice)=>{%>
+
+      <div class="col-lg-7 mt-5 mb-1 mx-auto">
+        <div class="card-header"></div>
+        <div class="card text-left event-card">
+          <div class="card-body">
+            <h4 class="card-title event-title">
+              NOTICE<img
+                class="form-event-logo"
+                src="/img/logo.png"
+                alt=""
+              />
+            </h4>
+            <h6 class="text-muted event-duartion"><%= notice.subject %></h6>
+            <div class="card-text mt-4 event-description">
+              <p class="fullread-caption-prewrap"><%= notice.notice %></p>
+              <pre
+                class="m-0"
+              >Go to this link : <a href="<%= notice.link %>"><%= notice.linkDescription %></a></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% }) %>
+  </div>
+</div>
+<%- include("partials/footer") %>

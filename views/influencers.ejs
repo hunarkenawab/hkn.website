@@ -1,0 +1,28 @@
+<%- include("partials/header") %>
+
+<div class="user-main-area">
+  <div class="container">
+    <h2 class="big-header mt-5 mb-5 text-center">OUR INFLUENCERS</h2>
+    <div class="row">
+    <% influencersArray.forEach((influencer)=>{%>
+        
+      <div class="col-lg-4 text-center">
+      <div class="card shadow core-team-card mb-5">
+        <div class="card-header"></div>
+        <img
+          class="core-team-img card-img-top"
+          src="data:image/<%=influencer.propic.contentType%>;base64,<%=influencer.propic.data.toString('base64')%>"
+          alt="core-influencer-pic"
+          width="100px"
+        />
+        <div class="card-body p-4">
+          <h4 class="core-influencer-title card-title"><%= influencer.name %></h4>
+        </div>
+      </div>
+    </div>
+    
+      <% }) %>
+    </div>
+  </div>
+</div>
+<%- include("partials/footer") %>
